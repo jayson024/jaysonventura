@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AT Cellphone Store</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h2 {
+            font-family: 'Arial', sans-serif;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .hr {
+            border-top: 2px solid #343a40;
+            width: 60%;
+            margin: auto;
+        }
+        .product {
+            margin-bottom: 20px;
+        }
+        .product img {
+            margin-bottom: 10px;
+        }
+        .product label {
+            font-weight: bold;
+        }
+        .product .form-control {
+            width: 70%;
+            margin: auto;
+        }
+        .order-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .order-section label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .order-section textarea, 
+        .order-section input[type="text"], 
+        .order-section input[type="number"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .order-section button {
+            width: 100%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>AT Cellphone Store</h2>
+                <hr class="hr" />
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Product 1 -->
+            <div class="col-4 text-center product">
+                <label id="product1">Samsung S21</label>
+                <img src="images/s21.png" style="width:200px; height:250px;" class="img-thumbnail" /><br>
+                <label id="price1">₱27,000.00</label>
+                <input type="number" class="form-control" id="qty1" placeholder="Enter quantity" /><br>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="col-4 text-center product">
+                <label id="product2">Samsung S22</label>
+                <img src="images/s22.png" style="width:200px; height:250px;" class="img-thumbnail" /><br>
+                <label id="price2">₱37,000.00</label>
+                <input type="number" class="form-control" id="qty2" placeholder="Enter quantity" /><br>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-4 text-center product">
+                <label id="product3">iPhone 12</label>
+                <img src="images/iphone12.png" style="width:200px; height:250px;" class="img-thumbnail" /><br>
+                <label id="price3">₱55,000.00</label>
+                <input type="number" class="form-control" id="qty3" placeholder="Enter quantity" /><br>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="col-4 text-center product">
+                <label id="product4">iPhone 13</label>
+                <img src="images/iphone13.png" style="width:200px; height:250px;" class="img-thumbnail" /><br>
+                <label id="price4">₱75,000.00</label>
+                <input type="number" class="form-control" id="qty4" placeholder="Enter quantity" /><br>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="col-4 text-center product">
+                <label id="product5">OnePlus 9</label>
+                <img src="images/oneplus9.png" style="width:200px; height:250px;" class="img-thumbnail" /><br>
+                <label id="price5">₱32,000.00</label>
+                <input type="number" class="form-control" id="qty5" placeholder="Enter quantity" /><br>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="col-4 text-center product">
+                <label id="product6">Google Pixel 6</label>
+                <img src="images/pixel6.png" style="width:200px; height:250px;" class="img-thumbnail" /><br>
+                <label id="price6">₱60,000.00</label>
+                <input type="number" class="form-control" id="qty6" placeholder="Enter quantity" /><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 order-section text-center">
+                <label for="carts">Orders</label><br>
+                <textarea class="form-control" rows="10" id="carts" readonly></textarea><br>
+                <label for="total">Total</label>
+                <input type="text" class="form-control border-0" id="total" readonly placeholder="Total" /><br>
+                <label for="cash">Cash Tendered</label>
+                <input type="number" class="form-control" id="cash" placeholder="Cash Tendered" /><br>
+                <label for="change">Change</label>
+                <input type="text" class="form-control border-0" id="change" readonly placeholder="Change" /><br>
+                <button class="btn btn-primary" onclick="calculateTotal()">Calculate</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            let quantities = [
+                document.getElementById('qty1').value,
+                document.getElementById('qty2').value,
+                document.getElementById('qty3').value,
+                document.getElementById('qty4').value,
+                document.getElementById('qty5').value,
+                document.getElementById('qty6').value
+            ];
+            
+            let prices = [
+                parseFloat(document.getElementById('price1').textContent.replace('₱', '').replace(',', '')),
+                parseFloat(document.getElementById('price2').textContent.replace('₱', '').replace(',', '')),
+                parseFloat(document.getElementById('price3').textContent.replace('₱', '').replace(',', '')),
+                parseFloat(document.getElementById('price4').textContent.replace('₱', '').replace(',', '')),
+                parseFloat(document.getElementById('price5').textContent.replace('₱', '').replace(',', '')),
+                parseFloat(document.getElementById('price6').textContent.replace('₱', '').replace(',', ''))
+            ];
+
+            let total = 0;
+            let orderDetails = '';
+            
+            for (let i = 0; i < quantities.length; i++) {
+                if (quantities[i] > 0) {
+                    let cost = quantities[i] * prices[i];
+                    total += cost;
+                    orderDetails += `Product ${i+1}: ${quantities[i]} x ₱${prices[i].toFixed(2)} = ₱${cost.toFixed(2)}\n`;
+                }
+            }
+
+            document.getElementById('carts').value = orderDetails;
+            document.getElementById('total').value = `₱${total.toFixed(2)}`;
+
+            let cashTendered = parseFloat(document.getElementById('cash').value);
+            if (!isNaN(cashTendered)) {
+                let change = cashTendered - total;
+                document.getElementById('change').value = `₱${change.toFixed(2)}`;
+            }
+        }
+    </script>
+</body>
+</html>
